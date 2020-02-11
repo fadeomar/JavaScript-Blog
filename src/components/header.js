@@ -18,8 +18,8 @@ const Header = ({ siteTitle }) => {
   const toggle = () => setIsOpen(!isOpen)
 
   return (
-    <div>
-      <Navbar fixed="top" light expand="sm">
+    <Navbar fixed="top" light expand="sm">
+      <div className="container">
         <NavbarBrand href="/">{siteTitle}</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -35,8 +35,8 @@ const Header = ({ siteTitle }) => {
             </NavItem>
           </Nav>
         </Collapse>
-      </Navbar>
-    </div>
+      </div>
+    </Navbar>
   )
 }
 

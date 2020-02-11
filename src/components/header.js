@@ -23,7 +23,7 @@ const Header = ({ siteTitle }) => {
         <NavbarBrand href="/">{siteTitle}</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink href="/team/">Team</NavLink>
             </NavItem>
@@ -34,7 +34,6 @@ const Header = ({ siteTitle }) => {
               <NavLink href="/about">About</NavLink>
             </NavItem>
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
         </Collapse>
       </Navbar>
     </div>

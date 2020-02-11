@@ -1,23 +1,13 @@
 import React from "react"
-import { graphql } from "gatsby"
+
+import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 const AboutPage = ({ data }) => (
-  <main>
-    <h1>About the Author</h1>
-    {console.log(data)}
-    <p>Welcome to my Gatsby site.</p>
-  </main>
+  <Layout>
+    <SEO title="About" />
+    <h1>About Page</h1>
+  </Layout>
 )
 
 export default AboutPage
-
-export const query = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
-  }
-`

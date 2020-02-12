@@ -9,7 +9,6 @@ import { slugify } from "../util/utility"
 import { DiscussionEmbed } from "disqus-react"
 
 const SinglePost = props => {
-  console.log(props, "rrrrrrrrr")
   const { data, pageContext, location } = props
   const post = data.markdownRemark.frontmatter
   // const author = authors.find(x => x.name === post.author)

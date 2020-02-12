@@ -154,7 +154,7 @@ const sidebarQuery = graphql`
           id
           frontmatter {
             title
-            slug
+
             image {
               childImageSharp {
                 fluid(maxWidth: 300) {
@@ -162,6 +162,9 @@ const sidebarQuery = graphql`
                 }
               }
             }
+          }
+          fields {
+            slug
           }
         }
       }

@@ -4,13 +4,13 @@ import { graphql, Link } from "gatsby"
 import SEO from "../components/seo"
 import { Badge, Card, CardBody, CardSubtitle } from "reactstrap"
 import Img from "gatsby-image"
-import { slugify } from "../util/utilityFunctions"
-import authors from "../util/authors"
+import { slugify } from "../util/utility"
+// import authors from "../util/authors"
 import { DiscussionEmbed } from "disqus-react"
 
 const SinglePost = ({ data, pageContext, location }) => {
   const post = data.markdownRemark.frontmatter
-  const author = authors.find(x => x.name === post.author)
+  // const author = authors.find(x => x.name === post.author)
 
   const baseUrl = "https://gatsbytutorial.co.uk/"
 
@@ -24,7 +24,7 @@ const SinglePost = ({ data, pageContext, location }) => {
   return (
     <Layout
       pageTitle={post.title}
-      postAuthor={author}
+      // postAuthor={author}
       authorImageFluid={data.file.childImageSharp.fluid}
     >
       <SEO

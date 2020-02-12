@@ -8,15 +8,14 @@ import { Row, Col } from "reactstrap"
 import Sidebar from "../components/Sidebar"
 
 const IndexPage = ({ data }) => (
-  <Layout>
+  <Layout pageTitle="Javascript aricles">
     <script
       src="https://kit.fontawesome.com/42295b36e0.js"
       crossorigin="anonymous"
     ></script>
     <SEO title="Home" />
-    <h1>Home Page</h1>
     <Row>
-      <Col md="8">
+      <Col md="12">
         <StaticQuery
           query={indexQuery}
           render={data => {
@@ -41,7 +40,7 @@ const IndexPage = ({ data }) => (
           }}
         />
       </Col>
-      <Col md="4">
+      {/* <Col md="4">
         <div
           style={{
             width: "100%",
@@ -51,7 +50,7 @@ const IndexPage = ({ data }) => (
         >
           <Sidebar />
         </div>
-      </Col>
+      </Col> */}
     </Row>
   </Layout>
 )

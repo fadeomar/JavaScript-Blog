@@ -1,26 +1,13 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const { slugify } = require("./src/util/utility")
 
-// You can delete this file if you're not using it
-exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
-  const pokemons = [
-    { name: "Pikachu", type: "electric" },
-    { name: "Squirtle", type: "water" },
-  ]
-
-  pokemons.forEach(pokemon => {
-    const node = {
-      name: pokemon.name,
-      type: pokemon.type,
-      id: createNodeId(`Pokemon-${pokemon.name}`),
-      internal: {
-        type: "Pokemon",
-        contentDigest: createContentDigest(pokemon),
-      },
-    }
-    actions.createNode(node)
-  })
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions
+  if (node.internal.type === `MarkdownRemark`) {
+    const slugFromTitle = slugify(node.frontmatter.title)
+    createNodeField({
+      node,
+      name: "slug",
+      value: slugFromTitle,
+    })
+  }
 }

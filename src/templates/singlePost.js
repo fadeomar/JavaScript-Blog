@@ -8,10 +8,11 @@ import { slugify } from "../util/utility"
 // import authors from "../util/authors"
 import { DiscussionEmbed } from "disqus-react"
 
-const SinglePost = ({ data, pageContext, location }) => {
+const SinglePost = props => {
+  console.log(props, "rrrrrrrrr")
+  const { data, pageContext, location } = props
   const post = data.markdownRemark.frontmatter
   // const author = authors.find(x => x.name === post.author)
-
   const baseUrl = "https://gatsbytutorial.co.uk/"
 
   const disqusShortname = "https-gatsbytutorial-co-uk"
@@ -25,7 +26,7 @@ const SinglePost = ({ data, pageContext, location }) => {
     <Layout
       pageTitle={post.title}
       // postAuthor={author}
-      authorImageFluid={data.file.childImageSharp.fluid}
+      // authorImageFluid={data.file.childImageSharp.fluid}
     >
       <SEO
         author={post.author}
@@ -128,7 +129,7 @@ const SinglePost = ({ data, pageContext, location }) => {
 }
 
 export const postQuery = graphql`
-  query blogPostBySlug($slug: String!, $imageUrl: String!) {
+  query blogPostBySlug($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
@@ -146,14 +147,15 @@ export const postQuery = graphql`
         }
       }
     }
-    file(relativePath: { eq: $imageUrl }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
   }
 `
+
+// file(relativePath: { eq: $imageUrl }) {
+//   childImageSharp {
+//     fluid(maxWidth: 300) {
+//       ...GatsbyImageSharpFluid
+//     }
+//   }
+// }
 
 export default SinglePost

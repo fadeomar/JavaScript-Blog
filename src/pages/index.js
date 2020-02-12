@@ -66,7 +66,6 @@ const indexQuery = graphql`
             title
             date(formatString: "MMM Do YYYY")
             author
-            path
             tags
             image {
               childImageSharp {

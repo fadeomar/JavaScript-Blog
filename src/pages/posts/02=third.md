@@ -5,8 +5,6 @@ author: "Jane Doe"
 image: "../../images/css.png"
 tags:
   - css
-  - css
-  - css
   - CSS
   - css3
 ---

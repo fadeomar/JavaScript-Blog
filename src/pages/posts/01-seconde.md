@@ -7,6 +7,8 @@ tags:
   - html
   - HTML
   - HTML5
+  - javascript
+  - css
 ---
 
 Hi there , wlecome to my blog it's contain useful articles about HTML

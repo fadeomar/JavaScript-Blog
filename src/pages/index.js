@@ -5,62 +5,58 @@ import SEO from "../components/seo"
 import { graphql, StaticQuery } from "gatsby"
 import Post from "../components/post"
 import { Row, Col } from "reactstrap"
-import Sidebar from "../components/Sidebar"
-
-const IndexPage = ({ data }) => (
-  <Layout pageTitle="Javascript aricles">
-    <script
-      src="https://kit.fontawesome.com/42295b36e0.js"
-      crossorigin="anonymous"
-    ></script>
-    <SEO title="Home" />
-    <Row>
-      <Col md="12">
-        <StaticQuery
-          query={indexQuery}
-          render={data => {
-            return (
-              <div>
-                {data.allMarkdownRemark.edges.map(({ node }) => {
-                  return (
-                    <Post
-                      key={node.id}
-                      title={node.frontmatter.title}
-                      author={node.frontmatter.author}
-                      slug={node.fields.slug}
-                      date={node.frontmatter.date}
-                      body={node.excerpt}
-                      fluid={node.frontmatter.image.childImageSharp.fluid}
-                      tags={node.frontmatter.tags}
-                    />
-                  )
-                })}
-              </div>
-            )
-          }}
-        />
-      </Col>
-      {/* <Col md="4">
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0,0,0,0.4)",
-          }}
-        >
-          <Sidebar />
-        </div>
-      </Col> */}
-    </Row>
-  </Layout>
-)
-
+import Pagination from "../components/Pagination"
+const IndexPage = ({ data }) => {
+  const postsPerPage = 2
+  let numberOfPages
+  return (
+    <Layout pageTitle="Javascript aricles">
+      <script
+        src="https://kit.fontawesome.com/42295b36e0.js"
+        crossorigin="anonymous"
+      ></script>
+      <SEO title="Home" />
+      <Row>
+        <Col md="12">
+          <StaticQuery
+            query={indexQuery}
+            render={data => {
+              numberOfPages = Math.ceil(
+                data.allMarkdownRemark.totalCount / postsPerPage
+              )
+              return (
+                <div>
+                  {data.allMarkdownRemark.edges.map(({ node }) => {
+                    return (
+                      <Post
+                        key={node.id}
+                        title={node.frontmatter.title}
+                        author={node.frontmatter.author}
+                        slug={node.fields.slug}
+                        date={node.frontmatter.date}
+                        body={node.excerpt}
+                        fluid={node.frontmatter.image.childImageSharp.fluid}
+                        tags={node.frontmatter.tags}
+                      />
+                    )
+                  })}
+                  <Pagination currentPage={1} numberOfPages={numberOfPages} />
+                </div>
+              )
+            }}
+          />
+        </Col>
+      </Row>
+    </Layout>
+  )
+}
 const indexQuery = graphql`
   query {
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 2
     ) {
+      totalCount
       edges {
         node {
           id

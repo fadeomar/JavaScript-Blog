@@ -1,5 +1,9 @@
 import React from "react"
-import { Pagination, PaginationItem, PaginationLink } from "reactstrap"
+import {
+  Pagination as Paginations,
+  PaginationItem,
+  PaginationLink,
+} from "reactstrap"
 
 const Pagination = ({ currentPage, numberOfPages }) => {
   const isFirst = currentPage === 1
@@ -8,7 +12,7 @@ const Pagination = ({ currentPage, numberOfPages }) => {
     currentPage - 1 === 1 ? "/" : "/page/" + (currentPage - 1).toString()
   const nextPage = "/page/" + (currentPage + 1).toString()
   return (
-    <Pagination aria-label="Page navigation example">
+    <Paginations aria-label="Page navigation example">
       {isFirst ? (
         <PaginationItem disabled>
           <PaginationLink previous href="/" />
@@ -42,7 +46,7 @@ const Pagination = ({ currentPage, numberOfPages }) => {
           <PaginationLink next href={nextPage} />
         </PaginationItem>
       )}
-    </Pagination>
+    </Paginations>
   )
 }
 

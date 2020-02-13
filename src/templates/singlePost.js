@@ -5,16 +5,16 @@ import SEO from "../components/seo"
 import { Badge, Card, CardBody, CardSubtitle } from "reactstrap"
 import Img from "gatsby-image"
 import { slugify } from "../util/utility"
-// import authors from "../util/authors"
+import authors from "../util/authors"
 import { DiscussionEmbed } from "disqus-react"
 
-const SinglePost = props => {
-  const { data, pageContext, location } = props
+const SinglePost = ({ data, pageContext, location }) => {
   const post = data.markdownRemark.frontmatter
-  // const author = authors.find(x => x.name === post.author)
-  const baseUrl = "https://gatsbytutorial.co.uk/"
+  const author = authors.find(x => x.name === post.author)
 
-  const disqusShortname = "https-gatsbytutorial-co-uk"
+  const baseUrl = "https://javascript-articles.com"
+
+  const disqusShortname = "javascript-articles"
   const disqusConfig = {
     identifier: data.markdownRemark.id,
     title: post.title,
@@ -24,8 +24,8 @@ const SinglePost = props => {
   return (
     <Layout
       pageTitle={post.title}
-      // postAuthor={author}
-      // authorImageFluid={data.file.childImageSharp.fluid}
+      postAuthor={author}
+      authorImageFluid={data.file.childImageSharp.fluid}
     >
       <SEO
         author={post.author}
@@ -128,7 +128,7 @@ const SinglePost = props => {
 }
 
 export const postQuery = graphql`
-  query blogPostBySlug($slug: String!) {
+  query blogPostBySlug($slug: String!, $imageUrl: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
@@ -146,15 +146,26 @@ export const postQuery = graphql`
         }
       }
     }
+    file(relativePath: { eq: $imageUrl }) {
+      childImageSharp {
+        fluid {
+          base64
+          tracedSVG
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
+          originalImg
+          originalName
+          presentationWidth
+          presentationHeight
+          __typename
+        }
+      }
+    }
   }
 `
-
-// file(relativePath: { eq: $imageUrl }) {
-//   childImageSharp {
-//     fluid(maxWidth: 300) {
-//       ...GatsbyImageSharpFluid
-//     }
-//   }
-// }
 
 export default SinglePost

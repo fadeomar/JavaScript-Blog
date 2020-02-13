@@ -22,6 +22,7 @@ exports.createPages = async ({ actions, graphql }) => {
   // Page templates
   const templates = {
     post: path.resolve("src/templates/singlePost.js"),
+    tagsPage: path.resolve("src/templates/tags-page.js"),
   }
 
   const res = await graphql(`

@@ -23,6 +23,7 @@ exports.createPages = async ({ actions, graphql }) => {
   const templates = {
     post: path.resolve("src/templates/singlePost.js"),
     tagsPage: path.resolve("src/templates/tags-page.js"),
+    tag: path.resolve("src/templates/tag-posts.js"),
   }
 
   const res = await graphql(`
@@ -88,5 +89,16 @@ exports.createPages = async ({ actions, graphql }) => {
       tags,
       tagPostCounts,
     },
+  })
+
+  // Tag posts pages
+  tags.forEach(tag => {
+    createPage({
+      path: `/tag/${_.kebabCase(tag)}`,
+      component: templates.tag,
+      context: {
+        tag,
+      },
+    })
   })
 }

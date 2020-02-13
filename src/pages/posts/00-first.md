@@ -5,6 +5,9 @@ author: "Fadi Omar"
 image: "../../images/javascript.png"
 tags:
   - javascript
+  - javascript
+  - javascript
+  - javascript
   - js
   - react
 ---

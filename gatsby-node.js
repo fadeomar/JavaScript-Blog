@@ -62,4 +62,31 @@ exports.createPages = async ({ actions, graphql }) => {
       },
     })
   })
+
+  // Get all tags
+  let tags = []
+  _.each(posts, edge => {
+    if (_.get(edge, "node.frontmatter.tags")) {
+      tags = tags.concat(edge.node.frontmatter.tags)
+    }
+  })
+
+  let tagPostCounts = {} // { tutorial: 2, design: 1}
+  tags.forEach(tag => {
+    // Or 0 cause it might not exist yet
+    tagPostCounts[tag] = (tagPostCounts[tag] || 0) + 1
+  })
+
+  // Remove duplicates
+  tags = _.uniq(tags)
+
+  // Tags page (all tags)
+  createPage({
+    path: "/tags",
+    component: templates.tagsPage,
+    context: {
+      tags,
+      tagPostCounts,
+    },
+  })
 }

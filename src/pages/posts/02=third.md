@@ -1,7 +1,7 @@
 ---
 title: "Third Post - CSS"
 date: 2020-2-12 02:02:00
-author: "Fadi Omar"
+author: "Jane Doe"
 image: "../../images/css.png"
 tags:
   - css
